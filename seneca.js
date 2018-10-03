@@ -1435,28 +1435,8 @@ function make_seneca( initial_options ) {
           actstats.done++
         }
         
-        try {
-          if( call_cb ) {
-            cb.apply(delegate,result) // note: err == result[0]
-          }
-        }
-
-        // for exceptions thrown inside the callback
-        catch( ex ) {
-          var err = ex
-
-          // handle throws of non-Error values
-          if( !util.isError(ex) ) {
-            if( _.isObject(ex) ) {
-              err = new Error(common.owndesc(ex,1))
-            }
-            else {
-              err = new Error(''+ex)
-            }
-          }
-
-          callback_error(
-            instance,err,actmeta,result,cb,actend-actstart,callargs,prior_ctxt)
+        if( call_cb ) {
+          cb.apply(delegate,result) // note: err == result[0]
         }
       }
       catch(ex) {
@@ -1550,38 +1530,6 @@ function make_seneca( initial_options ) {
     }
 
     return {call_cb:call_cb,err:err}
-  }
-
-
-  function callback_error( instance, err, actmeta, result, cb,
-                           duration, callargs, prior_ctxt ) 
-  {
-    if( !err.seneca ) {
-      err = error(err,'act_callback',_.extend(
-        {},
-        err.details,
-        {
-          message:  err.message,
-          pattern:  actmeta.pattern,
-          fn:       actmeta.func,
-          cb:       cb,
-          instance: instance.toString()
-        }))
-
-      result[0] = err
-    }
-      
-    err.details = err.details || {}
-    err.details.plugin = err.details.plugin || {}
-
-    logging.log_act_err( root, {actid:callargs.actid$,duration:duration}, 
-                         actmeta, callargs, prior_ctxt, err )
-
-    instance.emit('act-err',callargs,err,result[1])
-
-    if( so.errhandler ) {
-      so.errhandler.call(instance,err)
-    }
   }
 
 
