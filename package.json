@@ -74,7 +74,7 @@
   "devDependencies": {
     "body-parser": "^1.11.0",
     "connect": "~3.3.4",
-    "connect-query": "~0.2.0",
+    "connect-query": "~1.0.0",
     "docco": "~0.6.3",
     "jshint": "~2.6.0",
     "mocha": "~2.1.0",
