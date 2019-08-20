@@ -1366,7 +1366,7 @@ function make_seneca( initial_options ) {
 
     var actstats = act_stats_call( actmeta.pattern )
 
-
+    var newvariable = 'hello';
     // build callargs
     var callargs = args
     callargs.actid$ = actid

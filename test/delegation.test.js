@@ -35,6 +35,7 @@ describe('delegation', function(){
     })
 
     sid.act({c:'C'},function(err,out){
+      console.log('sample line');
       assert.ok(gex("{c=C,a$=A,b=B,*}").on( common.owndesc(out,1,true)))
     })
   })
