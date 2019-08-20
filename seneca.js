@@ -1363,7 +1363,6 @@ function make_seneca( initial_options ) {
     var act_done = function(err) {
       try {
         var actend = Date.now()
-        private$.timestats.point( actend-actstart, actmeta.argpattern )
 
         prior_ctxt.depth--
         prior_ctxt.entry = prior_ctxt.depth <= 0
