@@ -26,7 +26,6 @@ var jsonic       = require('jsonic')
 var patrun       = require('patrun')
 var parambulator = require('parambulator')
 var norma        = require('norma')
-var stats        = require('rolling-stats')
 var makeuse      = require('use-plugin')
 var lrucache     = require('lru-cache')
 var zig          = require('zig')
@@ -344,23 +343,6 @@ function make_seneca( initial_options ) {
 
   // TODO: encapsulate
   // setup status log
-  if( 0 < so.status_interval && so.status_log ) {
-    private$.stats = private$.stats || {}
-    setInterval(function() {
-      var stats = {alive:(Date.now()-private$.stats.start),act:private$.stats.act}
-      root.log.info('status',stats)
-    },so.status_interval)
-  }
-
-  if( so.stats ) {
-    private$.timestats = new stats.NamedStats( so.stats.size, so.stats.duration )
-
-    if( so.stats.running ) {
-      setInterval(function() {
-        private$.timestats.calculate()
-      }, so.stats.duration )
-    }
-  }
 
 
   private$.plugins      = {}
@@ -1027,16 +1009,6 @@ function make_seneca( initial_options ) {
       actmeta.handle = action.handle
     }
 
-
-    private$.stats.actmap[actmeta.argpattern] = 
-      private$.stats.actmap[actmeta.argpattern] || 
-      {id:actmeta.id,
-       plugin:{
-         full: actmeta.plugin_fullname,
-         name: actmeta.plugin_name,
-         tag:  actmeta.plugin_tag
-       },
-       prior:actmeta.priorpath,calls:0,done:0,fails:0,time:{}}
     
     if( addroute ) {
       var addlog = [ actmeta.sub ? 'SUB' : 'ADD', 
@@ -1364,9 +1336,6 @@ function make_seneca( initial_options ) {
 
     if( act_cache_check( instance, args, prior_ctxt, cb ) ) return;
 
-    var actstats = act_stats_call( actmeta.pattern )
-
-
     // build callargs
     var callargs = args
     callargs.actid$ = actid
@@ -1411,8 +1380,6 @@ function make_seneca( initial_options ) {
         }
 
         if( err ) {
-          private$.stats.act.fails++
-          actstats.fails++
 
           var out = act_error(instance,err,actmeta,result,cb,
                               actend-actstart,callargs,prior_ctxt)
@@ -1430,9 +1397,6 @@ function make_seneca( initial_options ) {
           logging.log_act_out( 
             root, {actid:actid,duration:actend-actstart}, 
             actmeta, callargs, result, prior_ctxt )
-
-          private$.stats.act.done++
-          actstats.done++
         }
         
         if( call_cb ) {
@@ -1555,7 +1519,6 @@ function make_seneca( initial_options ) {
 
       if( actdetails ) {
         var actmeta = actdetails.actmeta || {}
-        private$.stats.act.cache++
         
         logging.log_act_cache( root, {actid:actid}, actmeta, args, prior_ctxt )
         
@@ -1566,21 +1529,6 @@ function make_seneca( initial_options ) {
     
     return false;
   }
-
-
-  // Resolve action stats object, creating if ncessary, and count a call.
-  //
-  //    * _pattern_     (string)    &rarr;  action pattern
-  function act_stats_call( pattern ) {
-    var actstats = (private$.stats.actmap[pattern] = 
-                    private$.stats.actmap[pattern] || {})
-
-    private$.stats.act.calls++
-    actstats.calls++
-
-    return actstats
-  }
-  
 
 
   function act_make_delegate( instance, tx, callargs, actmeta, prior_ctxt ) {
@@ -1918,11 +1866,11 @@ function make_seneca( initial_options ) {
 
 
   // Add builtin actions.
-  root.add( {role:'seneca',  stats:true},  action_seneca_stats )
   root.add( {role:'seneca',  ready:true},  action_seneca_ready )
   root.add( {role:'seneca',  cmd:'close'}, action_seneca_close )
   root.add( {role:'options', cmd:'get'},   action_options_get  )
 
+  
 
   // Define builtin actions.
 
@@ -1936,39 +1884,6 @@ function make_seneca( initial_options ) {
     private$.wait_for_ready = false
     this.emit('ready')
     done()
-  }
-
-
-  function action_seneca_stats( args, done ) {
-    var stats
-
-    if( args.pattern && private$.stats.actmap[args.pattern] ) {
-      stats = private$.stats.actmap[args.pattern]
-      stats.time = private$.timestats.calculate(args.pattern)
-    }
-    else {
-      stats = _.clone(private$.stats)
-      stats.now    = new Date()
-      stats.uptime = stats.now - stats.start
-
-      stats.now   = new Date(stats.now).toISOString()
-      stats.start = new Date(stats.start).toISOString()
-
-      var summary = 
-            (null == args.summary && false) || 
-            (/^false$/i.exec(args.summary) ? false : !!(args.summary) )
-
-      if( summary ) {
-        stats.actmap = void 0
-      }
-      else {
-        _.each( private$.stats.actmap, function(a,p) { 
-          private$.stats.actmap[p].time = private$.timestats.calculate(p) 
-        })
-      }
-    }
-
-    done(null,stats)
   }
 
 
