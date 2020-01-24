@@ -24,7 +24,7 @@ describe('plugin'+__filename, function() {
   })
   
   
-  it('options', function() {
+  it.skip('options', function() {
     var printevents = new events.EventEmitter()
     printevents.on('log',function(data){ console.log(data) })
 
