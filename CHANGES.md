@@ -1,4 +1,7 @@
 
+## 0.7.x
+   * Added entity count fn.(ITPL-13918)
+
 ## 0.6.1: 2015-02-04
 
    * "zig" style control flow for neater code
