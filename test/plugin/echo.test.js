@@ -12,7 +12,7 @@ var seneca = require('../..')
 
 describe('plugin'+__filename, function() {
 
-  it.skip('happy', function() {
+  it('happy', function() {
     var si = seneca({log:{map:[{type:'init',
                                 handler:seneca.loghandler.stream(process.stdout)}]}})
     si.use('echo')
@@ -24,7 +24,7 @@ describe('plugin'+__filename, function() {
   })
   
   
-  it.skip('options', function() {
+  it('options', function() {
     var printevents = new events.EventEmitter()
     printevents.on('log',function(data){ console.log(data) })
 
