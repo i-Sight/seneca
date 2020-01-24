@@ -17,7 +17,7 @@ var gex     = require('gex')
 var testopts = {log:'silent'}
 
 
-describe('entity', function(){
+describe(__filename, function(){
 
   it('happy-mem', function(fin){
     var si = seneca(testopts)

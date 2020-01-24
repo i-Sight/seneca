@@ -10,7 +10,7 @@ var gex    = require('gex')
 
 
 
-describe('options', function(){
+describe(__filename, function(){
 
 
   it('options-happy', function(){

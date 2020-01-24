@@ -7,7 +7,7 @@ var logging = require('../lib/logging')
 
 function fmt(r){ return r.toString(true).replace(/\s+/g,'') }
 
-describe('logging', function() {
+describe(__filename, function() {
 
   function A(){}; A.toString = function(){return 'A'};
   function B(){}; B.toString = function(){return 'B'};

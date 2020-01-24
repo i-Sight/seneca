@@ -10,7 +10,7 @@ var seneca = require('../..')
 
 
 
-describe('plugin.echo', function() {
+describe('plugin'+__filename, function() {
 
   it('happy', function() {
     var si = seneca({log:{map:[{type:'init',

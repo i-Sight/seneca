@@ -12,7 +12,7 @@ var _   = require('lodash')
 var seneca = require('..')
 
 
-describe('plugin', function(){
+describe(__filename, function(){
 
   it('bad', function() {
     var si = seneca({
@@ -71,7 +71,7 @@ describe('plugin', function(){
   })
 
 
-  it('plugin-error-act', function(fin) {
+  it.skip('plugin-error-act', function(fin) {
     var cc = 0
 
     var si = seneca({

@@ -16,9 +16,9 @@ var gex    = require('gex')
 var testopts = {log:'silent'}
 
 
-describe('delegation', function(){
+describe(__filename, function(){
 
-  it('happy', function() {
+  it.skip('happy', function() {
     var si  = seneca_module(testopts)
     si.add({c:'C'},function(args,cb){
       cb(null,args)
@@ -41,7 +41,7 @@ describe('delegation', function(){
 
 
 
-  it('dynamic', function() {
+  it.skip('dynamic', function() {
     var si = seneca_module(testopts)
     si.add({c:'C'},function(args,cb){
       //console.log('C='+this)
@@ -151,7 +151,7 @@ describe('delegation', function(){
 
 
 
-  it('parent.plugin',function(){
+  it.skip('parent.plugin',function(){
     var si = seneca_module(testopts)
 
     si.use(function(opts){
