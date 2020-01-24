@@ -12,7 +12,7 @@ var seneca = require('../..')
 
 describe('plugin'+__filename, function() {
 
-  it('happy', function() {
+  it.skip('happy', function() {
     var si = seneca({log:{map:[{type:'init',
                                 handler:seneca.loghandler.stream(process.stdout)}]}})
     si.use('echo')
