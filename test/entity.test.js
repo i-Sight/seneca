@@ -17,7 +17,7 @@ var gex     = require('gex')
 var testopts = {log:'silent'}
 
 
-describe('entity', function(){
+describe(__filename, function(){
 
   it('happy-mem', function(fin){
     var si = seneca(testopts)
@@ -65,9 +65,15 @@ describe('entity', function(){
 
     ;fooent.list$(function(err,list){
       assert.equal(0,list.length)
+    
+    ;fooent.count$(function(err,count){
+        assert.equal(0,count)
 
     ;fooent.list$({a:1},function(err,list){
       assert.equal(0,list.length)
+
+    ;fooent.count$({a:1},function(err,count){
+      assert.equal(0,count)
 
     ;fooent.make$({a:1}).save$(function(err,foo1){
       assert.ok(foo1.id)
@@ -79,11 +85,17 @@ describe('entity', function(){
       assert.equal(foo1.a,list[0].a)
       assert.equal(''+foo1,''+list[0])
 
+    ;fooent.count$(function(err,count){
+      assert.equal(1,count)
+
     ;fooent.list$({a:1},function(err,list){
       assert.equal(1,list.length)
       assert.equal(foo1.id,list[0].id)
       assert.equal(foo1.a,list[0].a)
       assert.equal(''+foo1,''+list[0])
+
+    ;fooent.count$(function(err,count){
+      assert.equal(1,count)
 
     ;fooent.load$(foo1.id,function(err,foo11){
       assert.equal(foo1.id,foo11.id)
@@ -107,6 +119,12 @@ describe('entity', function(){
       assert.equal(2,list[0].a)
       assert.equal(''+foo111,''+list[0])
 
+    ;fooent.count$(function(err,count){
+      assert.equal(1,count)
+
+    ;fooent.count$({a:2},function(err,count){
+      assert.equal(1,count)
+
     ;list[0].remove$(function(err){
 
     ;fooent.list$(function(err,list){
@@ -114,6 +132,12 @@ describe('entity', function(){
 
     ;fooent.list$({a:2},function(err,list){
       assert.equal(0,list.length)
+
+    ;fooent.count$(function(err,count){
+      assert.equal(0,count)
+
+    ;fooent.count$({a:2},function(err,count){
+      assert.equal(0,count)
 
     ;fooent.make$({b:1}).save$(function(){
 
@@ -125,8 +149,14 @@ describe('entity', function(){
     ;fooent.list$({b:1},function(err,list){
       assert.equal(1,list.length)
 
+    ;fooent.count$(function(err,count){
+      assert.equal(2,count)
+
+    ;fooent.count$({b:1},function(err,count){
+      assert.equal(1,count)
+
       fin()
-    }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) })
+    }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) }) })
 
   })
 

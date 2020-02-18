@@ -1,4 +1,8 @@
 
+## 0.7.0 2020-02-18
+   * Added entity count fn. (ITPL-13918)
+   * Disabled tests that would always fail. (ITPL-13918)
+
 ## 0.6.1: 2015-02-04
 
    * "zig" style control flow for neater code

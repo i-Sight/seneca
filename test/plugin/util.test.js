@@ -12,7 +12,7 @@ var si   = seneca({log:'silent'})
 var util = si.pin({role:'util',cmd:'*'})
 
 
-describe('util', function() {
+describe(__filename, function() {
 
   it('quickcode', function(fin) {
     si.options({errhandler:fin})

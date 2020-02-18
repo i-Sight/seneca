@@ -12,7 +12,7 @@ var testopts = {log:'silent'}
 var seneca = require('..')
 
 
-describe('seneca.util', function() {
+describe(__filename, function() {
   var si = seneca(testopts)
 
   it('seneca.util.deepextend.happy', function() {

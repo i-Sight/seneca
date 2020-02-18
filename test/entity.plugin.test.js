@@ -10,7 +10,7 @@ var seneca = require('..')
 var gex = require('gex')
 
 
-describe('entity.plugin', function() {
+describe(__filename, function() {
 
   it('multi', function(fin) {
     var si = seneca(

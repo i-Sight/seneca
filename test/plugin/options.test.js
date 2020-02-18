@@ -9,7 +9,7 @@ var events = require('events')
 var seneca = require('../..')
 
 
-describe('plugin.options', function() {
+describe('plugin'+__filename, function() {
 
   it('happy', function() {
     var si = seneca({log:'silent'})

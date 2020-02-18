@@ -7,6 +7,7 @@ Each data store must define these patterns:
    * role:entity, cmd:load   - load a single entity, if it exists
    * role:entity, cmd:save   - save a single entity, creating it if needed
    * role:entity, cmd:list   - list entities matching a query condition
+   * role:entity, cmd:count   - count entities matching a query condition
    * role:entity, cmd:remove - remove an entity
    * role:entity, cmd:native - provide access to the native driver
 
@@ -29,7 +30,7 @@ Data stores may optionally subscribe to:
 
 ## Pattern parameters
 
-The role:entity, cmd:load;save;list;remove patterns must accept the
+The role:entity, cmd:load;save;list;count;remove patterns must accept the
 following parameters:
 
    * name: the name of the data entity, required
@@ -99,6 +100,14 @@ The query also supports additional qualifiers:
 
 
 ### cmd:list
+
+This pattern must accept:
+
+   * q: query to select a set of entities from the underlying data store
+
+The query qualifers are the same as for _cmd:load_.
+
+### cmd:count
 
 This pattern must accept:
 

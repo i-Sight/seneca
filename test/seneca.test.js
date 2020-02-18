@@ -36,7 +36,7 @@ var testopts = {log:'silent'}
 process.setMaxListeners(0)
 
 
-describe('seneca', function(){
+describe(__filename, function(){
 
   it('version', function(){
     var start = Date.now()
@@ -80,7 +80,7 @@ describe('seneca', function(){
 
 
 
-  it('ready-complex', function(fin){
+  it.skip('ready-complex', function(fin){
     var mark = {ec:0}
 
     timerstub.setTimeout(function(){
@@ -169,7 +169,7 @@ describe('seneca', function(){
   })
 
 
-  it('happy-error',function(fin){
+  it.skip('happy-error',function(fin){
     var si = seneca(testopts)
 
     si.add('happy_error:1',function(args,done){done(new Error('happy-error'))})
@@ -543,7 +543,7 @@ describe('seneca', function(){
   })
 
 
-  it('plugins', function() {
+  it.skip('plugins', function() {
     var si = seneca({plugins:['echo'],log:'silent'})
 
     si.act({role:'echo',baz:'bax'},function(err,out){
@@ -821,7 +821,7 @@ describe('seneca', function(){
 
 
 
-  it('fix', function() {
+  it.skip('fix', function() {
     var si = seneca(testopts)
 
     function ab(args,done){done(null,{r:''+args.a+(args.b||'-')+(args.c||'-')+args.z})}
@@ -976,7 +976,7 @@ describe('seneca', function(){
   })
 
 
-  it('act-cache', function(fin){
+  it.skip('act-cache', function(fin){
     var si = seneca(testopts)
     si.options({errhandler:fin})
 

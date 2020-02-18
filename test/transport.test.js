@@ -15,7 +15,7 @@ var _   = require('lodash')
 
 
 
-describe('transport', function(){
+describe(__filename, function(){
 
   // TODO: test top level qaz:* : def and undef other pats
 

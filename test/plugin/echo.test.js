@@ -10,7 +10,7 @@ var seneca = require('../..')
 
 
 
-describe('plugin.echo', function() {
+describe('plugin'+__filename, function() {
 
   it('happy', function() {
     var si = seneca({log:{map:[{type:'init',
@@ -18,7 +18,7 @@ describe('plugin.echo', function() {
     si.use('echo')
 
     si.act({role:'echo',baz:'bax'},function(err,out){
-      assert.isNull(err)
+      assert.ifError(err)
       assert.equal(''+{baz:'bax'},''+out)
     })
   })
@@ -33,7 +33,7 @@ describe('plugin.echo', function() {
     si.use('echo',{inject:{foo:'bar'}})
 
     si.act({role:'echo',baz:'bax'},function(err,out){
-      assert.isNull(err)
+      assert.ifError(err)
       assert.equal(''+{baz:'bax',foo:'bar'},''+out)
     })
   })

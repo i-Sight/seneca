@@ -10,7 +10,7 @@ var assert = require('assert')
 var common = require('../lib/common')
 
 
-describe('common', function(){
+describe(__filename, function(){
 
 
   it('deepextend-empty', function() {
