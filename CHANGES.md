@@ -1,5 +1,5 @@
 
-## 0.7.0
+## 0.7.0 2020-02-18
    * Added entity count fn. (ITPL-13918)
    * Disabled tests that would always fail. (ITPL-13918)
 
