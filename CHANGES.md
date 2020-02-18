@@ -1,6 +1,7 @@
 
 ## 0.7.0
-   * Added entity count fn.(ITPL-13918)
+   * Added entity count fn. (ITPL-13918)
+   * Disabled tests that would always fail. (ITPL-13918)
 
 ## 0.6.1: 2015-02-04
 
