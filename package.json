@@ -36,22 +36,22 @@
   ],
   "dependencies": {
     "async": "~0.9.0",
-    "eraro": "~0.4.1",
+    "eraro": "~1.0.0",
     "gate-executor": "~0.2.2",
-    "gex": "~0.2.0",
+    "gex": "1.0.0",
     "jsonic": "~0.1.2",
-    "lodash": "~4.17.5",
+    "lodash": "~4.17.11",
     "lru-cache": "~2.5.0",
-    "minimist": "~1.1.0",
+    "minimist": "~1.2.3",
     "nid": "~0.3.2",
     "norma": "~0.4.1",
-    "parambulator": "git://github.com/i-Sight/parambulator#chore/ITPL-15498",
+    "parambulator": "git://github.com/i-Sight/parambulator#v1.5.3-isight",
     "patrun": "~0.4.3",
     "rolling-stats": "~0.1.1",
     "seneca-basic": "~0.2.0",
     "seneca-mem-store": "~0.2.1",
-    "seneca-transport": "git://github.com/i-Sight/seneca-transport/#chore/release-0.6.6",
-    "seneca-web": "~0.3.3",
+    "seneca-transport": "git://github.com/i-Sight/seneca-transport#v0.6.6",
+    "seneca-web": "git://github.com/i-Sight/seneca-web#0.3.4",
     "use-plugin": "~1.0.0",
     "zig": "~0.1.0"
   },
@@ -80,5 +80,15 @@
     "mocha": "~8.0.1",
     "seneca-echo": "~0.3.0",
     "seneca-error-test": "~0.2.2"
+  },
+  "resolutions": {
+    "**/patrun/gex": "~1.0.0",
+    "**/patrun/lodash": "~4.17.11",
+    "**/seneca-basic/lodash": "~4.17.11",
+    "**/seneca-mem-store/lodash": "~4.17.11",
+    "**/zig/lodash": "~4.17.11",
+    "**/gate-executor/eraro/lodash": "~4.17.11",
+    "**/gate-executor/lodash": "~4.17.12",
+    "**/eraro/lodash": "~4.17.11"
   }
 }
