@@ -40,7 +40,7 @@
     "gate-executor": "~0.2.2",
     "gex": "1.0.0",
     "jsonic": "~0.1.2",
-    "lodash": "~4.17.11",
+    "lodash": "~4.17.15",
     "lru-cache": "~2.5.0",
     "minimist": "~1.2.3",
     "nid": "~0.3.2",
@@ -83,12 +83,12 @@
   },
   "resolutions": {
     "**/patrun/gex": "~1.0.0",
-    "**/patrun/lodash": "~4.17.11",
-    "**/seneca-basic/lodash": "~4.17.11",
-    "**/seneca-mem-store/lodash": "~4.17.11",
-    "**/zig/lodash": "~4.17.11",
-    "**/gate-executor/eraro/lodash": "~4.17.11",
-    "**/gate-executor/lodash": "~4.17.12",
-    "**/eraro/lodash": "~4.17.11"
+    "**/patrun/lodash": "~4.17.15",
+    "**/seneca-basic/lodash": "~4.17.15",
+    "**/seneca-mem-store/lodash": "~4.17.15",
+    "**/zig/lodash": "~4.17.15",
+    "**/gate-executor/eraro/lodash": "~4.17.15",
+    "**/gate-executor/lodash": "~4.17.14",
+    "**/eraro/lodash": "~4.17.15"
   }
 }
