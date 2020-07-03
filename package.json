@@ -18,7 +18,7 @@
     "toolkit",
     "startup"
   ],
-  "version": "0.7.0-isight",
+  "version": "0.7.2-isight",
   "license": "MIT",
   "homepage": "http://senecajs.org",
   "author": "Richard Rodger (http://richardrodger.com/)",
@@ -40,7 +40,7 @@
     "gate-executor": "~0.2.2",
     "gex": "1.0.0",
     "jsonic": "~0.1.2",
-    "lodash": "~4.17.11",
+    "lodash": "~4.17.15",
     "lru-cache": "~2.5.0",
     "minimist": "~1.2.3",
     "nid": "~0.3.2",
@@ -80,15 +80,5 @@
     "mocha": "~8.0.1",
     "seneca-echo": "~0.3.0",
     "seneca-error-test": "~0.2.2"
-  },
-  "resolutions": {
-    "**/patrun/gex": "~1.0.0",
-    "**/patrun/lodash": "~4.17.11",
-    "**/seneca-basic/lodash": "~4.17.11",
-    "**/seneca-mem-store/lodash": "~4.17.11",
-    "**/zig/lodash": "~4.17.11",
-    "**/gate-executor/eraro/lodash": "~4.17.11",
-    "**/gate-executor/lodash": "~4.17.12",
-    "**/eraro/lodash": "~4.17.11"
   }
 }
